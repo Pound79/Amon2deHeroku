@@ -5,10 +5,11 @@
 [Herokuで学ぶ、初めてのPerl](http://sssslide.com/speakerdeck.com/akiym/herokudexue-bu-chu-metefalseperl#105)のスライドの手順でHerokuで公開しようとするとうまくいかない・・・.
 具体的には、Herokuのgitへpushするときにrejectされてしまう.
 
-`$ heroku create appname --stack cedar --buildpack https://github.com/miyagawa/heroku-buildpack-per …
+`
+$ heroku create appname --stack cedar --buildpack https://github.com/miyagawa/heroku-buildpack-per …
 Creating ⬢ appname... done, stack is cedar-14
 Setting buildpack to https://github.com/miyagawa/heroku-buildpack-per … done
-https://アプリ名.herokuapp.com/ | https://git.heroku.com/appname.git
+https://appname.herokuapp.com/ | https://git.heroku.com/appname.git
 
 $ git push heroku master
 Counting objects: 118, done.
@@ -29,7 +30,8 @@ remote: ! Push rejected to appname.
 remote: 
 To https://git.heroku.com/appname.git
 ! [remote rejected] master -> master (pre-receive hook declined)
-error: failed to push some refs to 'https://git.heroku.com/appname.git'`
+error: failed to push some refs to 'https://git.heroku.com/appname.git'
+`
 
 これはapp.psgiがルートディレクトリに存在しなかったために起きたエラー.
 app.psgiにあたるファイルはscript/appname-serverであるため、これをルートディレクトリにコピーし、名前をapp.psgiに変更する.
@@ -45,7 +47,7 @@ BEGIN {
     push(@INC, '/app/local/lib/perl5/darwin-2level');
 }
 ```
-`
+
 これで一つエラーは解消する.
 この時点で`$ git push heroku master --force`でHerokuのgitにpushすることはできる.
 しかし`$ heroku open`でブラウザ表示してもApplication Errorの表示になる.
@@ -69,7 +71,7 @@ requires 'List::MoreUtils';
 requires 'Parallel::Prefork';
 requires 'Starlet';
 ```
-`
+
 だいたいこのあたりを追加することで、無事Herokuにpush&ブラウザ上で表示されることができた.
 どこか抜けてるところもあるかも・・・.
 
