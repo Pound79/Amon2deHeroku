@@ -6,54 +6,30 @@
 
 具体的には、Herokuのgitへpushするときにrejectされてしまう.
 
-`$ heroku create appname --stack cedar --buildpack https://github.com/miyagawa/heroku-buildpack-per …`
-
-`Creating ⬢ appname... done, stack is cedar-14`
-
-`Setting buildpack to https://github.com/miyagawa/heroku-buildpack-per … done`
-
-`https://appname.herokuapp.com/ | https://git.heroku.com/appname.git`
-
-
-`$ git push heroku master`
-
-`Counting objects: 118, done.`
-
-`Delta compression using up to 4 threads.`
-
-`Compressing objects: 100% (108/108), done.`
-
-`Writing objects: 100% (118/118), 336.40 KiB | 0 bytes/s, done.`
-
-`Total 118 (delta 22), reused 0 (delta 0)`
-
-`remote: Compressing source files... done.`
-
-`remote: Building source:`
-
-`remote: `
-
-`remote: -----> Failed to detect app matching https://github.com/miyagawa/heroku-buildpack-per … buildpack`
-
-`remote: More info: https://devcenter.heroku.com/articles/buildpacks …`
-
-`remote: `
-
-`remote: ! Push failed`
-
-`remote: Verifying deploy...`
-
-`remote: `
-
-`remote: ! Push rejected to appname.`
-
-`remote: `
-
-`To https://git.heroku.com/appname.git`
-
-`! [remote rejected] master -> master (pre-receive hook declined)`
-
-`error: failed to push some refs to 'https://git.heroku.com/appname.git'`
+    $ heroku create appname --stack cedar --buildpack https://github.com/miyagawa/heroku-buildpack-per …
+    Creating ⬢ appname... done, stack is cedar-14
+    Setting buildpack to https://github.com/miyagawa/heroku-buildpack-per … done
+    https://appname.herokuapp.com/ | https://git.heroku.com/appname.git
+    $ git push heroku master
+    Counting objects: 118, done.
+    Delta compression using up to 4 threads.
+    Compressing objects: 100% (108/108), done.
+    Writing objects: 100% (118/118), 336.40 KiB | 0 bytes/s, done.
+    Total 118 (delta 22), reused 0 (delta 0)
+    remote: Compressing source files... done.
+    remote: Building source:
+    remote: 
+    remote: -----> Failed to detect app matching https://github.com/miyagawa/heroku-buildpack-per … buildpack
+    remote: More info: https://devcenter.heroku.com/articles/buildpacks …
+    remote: 
+    remote: ! Push failed
+    remote: Verifying deploy...
+    remote: 
+    remote: ! Push rejected to appname.
+    remote: 
+    To https://git.heroku.com/appname.git
+    ! [remote rejected] master -> master (pre-receive hook declined)
+    error: failed to push some refs to 'https://git.heroku.com/appname.git'
 
 これはapp.psgiがルートディレクトリに存在しなかったために起きたエラー.
 
